@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра Тапалка</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="telegram-nickname">Ник телеграма:<br>{{ username }}</div>
+        <div class="stats">
+            <div class="stat-box">Прибыль за тап<br><span id="profit-per-tap">{{ profit_per_tap }}</span></div>
+            <div class="stat-box">Монеты до апа<br><span id="coins-to-upgrade">500K</span></div>
+        </div>
+        <div class="stat-box"><img class="coin-small" src="coin_small.png" alt="Монета"><br><span id="coin-counter">{{ coins }}</span></div>
+    </div>
+    <div class="coin-clicker" id="coin">
+        <img src="coin.png" alt="Монета">
+    </div>
+    <div class="footer">
+        <button class="button" id="upgrade-profit">Улучшить прибыль</button>
+        <button class="button" id="upgrade-energy">Увеличить энергию</button>
+        <button class="button" id="update-right">Скоро</button>
+    </div>
+    <div class="energy">
+        <img class="lightning" src="lightning.png" alt="Молния">
+        <span id="energy-counter">{{ energy }}/1000</span>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

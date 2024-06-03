@@ -1,21 +1,26 @@
 import sqlite3
 
-conn = sqlite3.connect('coins.db')
-cursor = conn.cursor()
+def create_db():
+    conn = sqlite3.connect('coins.db')
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY,
+            username TEXT NOT NULL,
+            coins INTEGER DEFAULT 0,
+            profit_per_tap INTEGER DEFAULT 1,
+            energy INTEGER DEFAULT 1000
+        )
+    ''')
 
-# Создаем таблицу пользователей
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        coins INTEGER DEFAULT 0
-    )
-''')
+    cursor.execute('''
+        INSERT INTO users (username, coins, profit_per_tap, energy) VALUES
+        ('default_user', 0, 1, 1000)
+    ''')
+    
+    conn.commit()
+    conn.close()
 
-# Вставляем дефолтного пользователя для тестирования
-cursor.execute('''
-    INSERT OR IGNORE INTO users (username, coins) VALUES ('default_user', 0)
-''')
-
-conn.commit()
-conn.close()
+if __name__ == "__main__":
+    create_db()
